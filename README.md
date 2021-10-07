@@ -8,9 +8,11 @@ Submit in Fenix, project MP1, a zip file with, and only with:
 -> a folder "tests" with all the source test files (extensions ".txt");
 -> a folder "compiled" containing all the compiled version of all the transducers used, including the tests (extension ".fst");
 -> a folder "images" containing the graphical versions of all the transducers, including the tests (extension ".pdf", ".ps" or ".png");
--> a short report, whose file name should be "report.txt" or "report.pdf", with a maximum of 1 page, containing the identification of the members of the group, the description of the options taken and comments on the solution developed. The report MUST provide an estimate of each element's contribution to the work. For example: Peter: 60%, John: 40%, along with a short justification.
+-> a short report, whose file name should be "report.txt" or "report.pdf", with a maximum of 1 page, containing the identification of the members of the group, the
+description of the options taken and comments on the solution developed. The report MUST provide an estimate of each element's contribution to the work. For
+example: Peter: 60%, John: 40%, along with a short justification.
 -> You can make several submissions: a new submission replaces the previous one. Attention:
-        developed transducers must have exactly the same names as above;
+developed transducers must have exactly the same names as above;
 the 4 folders "sources", "tests", "compiled" and "images" should not contain sub-folders.
 
 
