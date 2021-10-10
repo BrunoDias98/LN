@@ -7,55 +7,55 @@ for i in sources/*.txt tests/*.txt; do
     fstcompile --isymbols=syms.txt --osymbols=syms.txt $i | fstarcsort > compiled/$(basename $i ".txt").fst
 done
 
+echo "Creating the transducer 'A2R' by inverting it and trying the input 'tests/Anumber1.txt' (stdout)"
+fstinvert compiled/R2A.fst > compiled/A2R.fst
+fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-#echo "Testing the transducer 'R2ATEST' with the input 'tests/testing.txt' (stdout)"
-#fstcompose compiled/testing.fst compiled/R2ATEST.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber1.txt' (stdout)"
+# fstcompose compiled/Rnumber1.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber1.txt' (stdout)"
-fstcompose compiled/Rnumber1.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber2.txt' (stdout)"
+# fstcompose compiled/Rnumber2.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber2.txt' (stdout)"
-fstcompose compiled/Rnumber2.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber3.txt' (stdout)"
+# fstcompose compiled/Rnumber3.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber3.txt' (stdout)"
-fstcompose compiled/Rnumber3.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber4.txt' (stdout)"
+# fstcompose compiled/Rnumber4.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber4.txt' (stdout)"
-fstcompose compiled/Rnumber4.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber5.txt' (stdout)"
+# fstcompose compiled/Rnumber5.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber5.txt' (stdout)"
-fstcompose compiled/Rnumber5.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber6.txt' (stdout)"
+# fstcompose compiled/Rnumber6.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber6.txt' (stdout)"
-fstcompose compiled/Rnumber6.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber7.txt' (stdout)"
+# fstcompose compiled/Rnumber7.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber7.txt' (stdout)"
-fstcompose compiled/Rnumber7.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber8.txt' (stdout)"
+# fstcompose compiled/Rnumber8.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber8.txt' (stdout)"
-fstcompose compiled/Rnumber8.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber9.txt' (stdout)"
+# fstcompose compiled/Rnumber9.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber9.txt' (stdout)"
-fstcompose compiled/Rnumber9.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber10.txt' (stdout)"
+# fstcompose compiled/Rnumber10.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber10.txt' (stdout)"
-fstcompose compiled/Rnumber10.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumbe11.txt' (stdout)"
+# fstcompose compiled/Rnumber11.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumbe11.txt' (stdout)"
-fstcompose compiled/Rnumber11.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber12.txt' (stdout)"
+# fstcompose compiled/Rnumber12.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber12.txt' (stdout)"
-fstcompose compiled/Rnumber12.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber13.txt' (stdout)"
+# fstcompose compiled/Rnumber13.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber13.txt' (stdout)"
-fstcompose compiled/Rnumber13.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber14.txt' (stdout)"
+# fstcompose compiled/Rnumber14.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber14.txt' (stdout)"
-fstcompose compiled/Rnumber14.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-
-echo "Testing the transducer 'R2A' with the input 'tests/Rnumber15.txt' (stdout)"
-fstcompose compiled/Rnumber15.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# echo "Testing the transducer 'R2A' with the input 'tests/Rnumber15.txt' (stdout)"
+# fstcompose compiled/Rnumber15.fst compiled/R2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
 # TODO
 
