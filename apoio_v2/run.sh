@@ -62,8 +62,8 @@ fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject
 
 #echo "Testing the transducer 'mm2mmm' with the input 'tests/month1.txt' (stdout)"
 #fstcompose compiled/month1.fst compiled/mm2mmm.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-#echo "Testing the transducer 'd2dd' with the input 'tests/day1.txt' (stdout)"
-#fstcompose compiled/day1.fst compiled/d2dd.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Testing the transducer 'd2dd' with the input 'tests/day1.txt' (stdout)"
+fstcompose compiled/day1.fst compiled/d2dd.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 #echo "Testing the transducer 'd2dddd' with the input 'tests/month1.txt' (stdout)"
 #fstcompose compiled/dat2.fst compiled/d2dddd.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 #echo "Testing the transducer 'copy' with the input 'tests/copy1.txt' (stdout)"
