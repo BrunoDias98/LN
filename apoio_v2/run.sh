@@ -7,9 +7,40 @@ for i in sources/*.txt tests/*.txt; do
     fstcompile --isymbols=syms.txt --osymbols=syms.txt $i | fstarcsort > compiled/$(basename $i ".txt").fst
 done
 
-echo "Creating the transducer 'A2R' by inverting it and trying the input 'tests/Anumber1.txt' (stdout)"
-fstinvert compiled/R2A.fst > compiled/A2R.fst
-fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+#echo "Creating the transducer 'A2R' by inverting it and trying the input 'tests/Anumber1.txt' (stdout)"
+#fstinvert compiled/R2A.fst > compiled/A2R.fst
+#fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+
+echo "Creating the transducer 'birthR2A' and trying with the input tests/romanBirthDate"
+# This is the first part which converts Roman birthdates to 7/9/313
+fstconcat compiled/R2A.fst compiled/copy.fst > compiled/auxJ1.fst
+fstconcat compiled/auxJ1.fst compiled/R2A.fst > compiled/auxJ2.fst
+fstconcat compiled/auxJ2.fst compiled/copy.fst > compiled/auxJ3.fst
+fstconcat compiled/auxJ3.fst compiled/R2A.fst > compiled/auxFirstPart.fst
+# This is the second part which converts 7/9/13 to 07/09/0313
+fstconcat compiled/d2dd.fst compiled/copy.fst > compiled/auxJ4.fst
+fstconcat compiled/auxJ4.fst compiled/d2dd.fst > compiled/auxJ5.fst
+fstconcat compiled/auxJ5.fst compiled/copy.fst > compiled/auxJ6.fst
+# change d2dd to dd2dddd
+fstconcat compiled/auxJ6.fst compiled/d2dd.fst > compiled/auxSecondPart.fst
+# Here we combine first part with second part resulting in birthR2A
+fstcompose compiled/auxFirstPart.fst compiled/auxSecondPart.fst > compiled/birthR2A.fst
+# Test with roman birth date
+fstcompose compiled/romanBirthDate.fst compiled/birthR2A.fst > compiled/birthR2ATestResult.fst
+
+echo "Creating the transducer 'birthA2T' and trying with the input tests/arabicBirthDate"
+# copy all symbols except the ones in the middle, the middle ones are converted to month name
+fstconcat compiled/copy.fst compiled/copy.fst > compiled/auxK1.fst
+fstconcat compiled/auxK1.fst compiled/copy.fst > compiled/auxK2.fst
+fstconcat compiled/auxK2.fst compiled/mm2mmm.fst > compiled/auxK3.fst
+fstconcat compiled/auxK3.fst compiled/copy.fst > compiled/auxK4.fst
+fstconcat compiled/auxK4.fst compiled/copy.fst > compiled/auxK5.fst
+fstconcat compiled/auxK5.fst compiled/copy.fst > compiled/auxK6.fst
+fstconcat compiled/auxK6.fst compiled/copy.fst > compiled/auxK7.fst
+fstconcat compiled/auxK7.fst compiled/copy.fst > compiled/birthA2T.fst
+#Test with Arabic birth date
+fstcompose compiled/arabicBirthDate.fst compiled/birthA2T.fst > compiled/birthA2TTestResult.fst
+
 
 
 # echo "Testing the transducer 'R2A' with the input 'tests/Rnumber1.txt' (stdout)"
