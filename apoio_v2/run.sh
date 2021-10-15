@@ -7,9 +7,9 @@ for i in sources/*.txt tests/*.txt; do
     fstcompile --isymbols=syms.txt --osymbols=syms.txt $i | fstarcsort > compiled/$(basename $i ".txt").fst
 done
 
-#echo "Creating the transducer 'A2R' by inverting it and trying the input 'tests/Anumber1.txt' (stdout)"
-#fstinvert compiled/R2A.fst > compiled/A2R.fst
-#fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+echo "Creating the transducer 'A2R' by inverting it and trying the input 'tests/Anumber1.txt' (stdout)"
+fstinvert compiled/R2A.fst > compiled/A2R.fst
+fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
 echo "Creating the transducer 'birthR2A' and trying with the input tests/romanBirthDate"
 # This is the first part which converts Roman birthdates to 7/9/313
@@ -21,7 +21,7 @@ fstconcat compiled/auxJ3.fst compiled/R2A.fst > compiled/auxFirstPart.fst
 fstconcat compiled/d2dd.fst compiled/copy.fst > compiled/auxJ4.fst
 fstconcat compiled/auxJ4.fst compiled/d2dd.fst > compiled/auxJ5.fst
 fstconcat compiled/auxJ5.fst compiled/copy.fst > compiled/auxJ6.fst
-# change d2dd to dd2dddd
+# CRUCIAL change d2dd to dd2dddd < --------------------------------------------------------- WATCH OUT
 fstconcat compiled/auxJ6.fst compiled/d2dd.fst > compiled/auxSecondPart.fst
 # Here we combine first part with second part resulting in birthR2A
 fstcompose compiled/auxFirstPart.fst compiled/auxSecondPart.fst > compiled/birthR2A.fst
@@ -41,6 +41,30 @@ fstconcat compiled/auxK7.fst compiled/copy.fst > compiled/birthA2T.fst
 #Test with Arabic birth date
 fstcompose compiled/arabicBirthDate.fst compiled/birthA2T.fst > compiled/birthA2TTestResult.fst
 
+
+
+echo "Creating the transducer 'birthT2R' and trying with the input tests/arabicTextBirthDate"
+# ir ate ao meio e converter para digito, depois a partir do inicio percorer convertendo A2R SKIP A2R SKIP A2R
+# inversion mm2mmm (month name -> number)
+fstinvert compiled/mm2mmm.fst > compiled/mmm2mm.fst
+# ir ate ao meio 
+fstconcat compiled/copy.fst compiled/copy.fst > compiled/auxL1.fst
+fstconcat compiled/auxL1.fst compiled/copy.fst > compiled/auxL2.fst
+# 09/Sep/2013 to 09/09/2013
+fstconcat compiled/auxL2.fst compiled/mmm2mm.fst > compiled/auxL3.fst
+fstconcat compiled/auxL3.fst compiled/copy.fst > compiled/auxL4.fst
+fstconcat compiled/auxL4.fst compiled/copy.fst > compiled/auxL5.fst
+fstconcat compiled/auxL5.fst compiled/copy.fst > compiled/auxL6.fst
+fstconcat compiled/auxL6.fst compiled/copy.fst > compiled/auxL7.fst
+fstconcat compiled/auxL7.fst compiled/copy.fst > compiled/auxLFirstPart.fst
+# FIRST PART WORKING
+#A2R SKIP A2R SKIP A2R (inversion of birthR2A)
+fstinvert compiled/birthR2A.fst > compiled/birthA2R.fst
+# composition of mm2mmm and A2R
+fstcompose compiled/auxLFirstPart.fst compiled/birthA2R.fst > compiled/birthT2R.fst
+# WHY IS NOT GENERATING?
+# TEST
+fstcompose compiled/arabicTextBirthDate.fst compiled/birthA2R.fst > compiled/birthT2RTestResult.fst
 
 
 # echo "Testing the transducer 'R2A' with the input 'tests/Rnumber1.txt' (stdout)"
