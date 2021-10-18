@@ -42,6 +42,17 @@ fstinvert compiled/R2A.fst > compiled/A2R.fst
 # fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 fstcompose compiled/Anumber1.fst compiled/A2R.fst > compiled/A2RResult.fst
 
+fstcompose compiled/Rnumber1.fst compiled/R2A.fst > compiled/R2AtestResult.fst
+
+
+
+
+
+
+
+
+
+
 echo "j. Creating the transducer 'birthR2A' and trying with the input tests/romanBirthDate"
 
 # This is the first part which converts Roman birthdates to 7/9/313
@@ -55,7 +66,7 @@ fstconcat compiled/d2dd.fst compiled/copy.fst > compiled/auxJ4.fst
 fstconcat compiled/auxJ4.fst compiled/d2dd.fst > compiled/auxJ5.fst
 fstconcat compiled/auxJ5.fst compiled/copy.fst > compiled/auxJ6.fst
 # CRUCIAL change d2dd to dd2dddd < --------------------------------------------------------- WATCH OUT
-fstconcat compiled/auxJ6.fst compiled/d2dd.fst > compiled/auxSecondPart.fst
+fstconcat compiled/auxJ6.fst compiled/d2dddd_soko.fst > compiled/auxSecondPart.fst
 
 # Here we combine first part with second part resulting in birthR2A
 fstcompose compiled/auxFirstPart.fst compiled/auxSecondPart.fst > compiled/birthR2A.fst
@@ -84,11 +95,8 @@ fstcompose compiled/arabicBirthDate.fst compiled/birthA2T.fst > compiled/birthA2
 
 echo "L. Creating the transducer 'birthT2R' and trying with the input tests/arabicTextBirthDate"
 
-
 fstinvert compiled/birthA2T.fst > compiled/birthT2A.fst
-
 fstinvert compiled/birthR2A.fst > compiled/birthA2R.fst
-
 fstcompose compiled/birthT2A.fst compiled/birthA2R.fst > compiled/birthT2R.fst
 
 
