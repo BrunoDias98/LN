@@ -10,7 +10,6 @@ done
 echo "----------------- First Exercise -----------------\n"
 
 echo "a. Testing the transducer 'mm2mmm' with mm2mmmTest\n"
-
 fstcompose compiled/mm2mmmTest.fst compiled/mm2mmm.fst > compiled/mm2mmmResult.fst
 
 echo "b. Testing the transducer 'd2dd' with d2ddTest\n"
@@ -23,13 +22,16 @@ fstcompose compiled/d2ddddTest.fst compiled/d2dddd_soko.fst > compiled/d2ddddRes
 echo "d. Testing the tranducer 'copy' with copyTest\n"
 #fstcompose compiled/copyTest.fst compiled/copy.fst > compiled/copyResult.fst 
 
-echo "e. Testing the transducer 'date2year' with date2yearTest\n"
+echo "e. Testing the tranducer 'skip' with skipTest\n"
+#fstcompose compiled/skipTest.fst compiled/skip.fst > compiled/skipResult.fst 
+
+echo "f. Testing the transducer 'date2year' with date2yearTest\n"
 #fstcompose compiled/date2YearTest.fst compiled/date2year.fst > compiled/date2yearResult.fst 
 
-echo "f. Testing the transducer 'leap' with leapTest\n"
+echo "g. Testing the transducer 'leap' with leapTest\n"
 #fstcompose compiled/leapTest.fst compiled/leap.fst > compiled/leapResult.fst 
 
-echo "g. Testing the transducer 'R2A' with R2ATest\n"
+echo "h. Testing the transducer 'R2A' with R2ATest\n"
 #fstcompose compiled/R2ATest.fst compiled/R2A.fst > compiled/R2AResult.fst 
 
 echo "----------------- Second Exercise -----------------\n"
