@@ -122,31 +122,31 @@ fstcompose compiled/auxM1.fst compiled/leap.fst > compiled/birthR2L.fst
 
 echo "Testing 'birthR2A', 'birthA2T', 'birthT2R', 'birthR2L' with each group member birthday date: "
 echo " birthA2T"
-fstcompose compiled/186392.fst         compiled/birthA2T.fst > compiled/186392birthA2T.fst
+fstcompose compiled/86392.fst  compiled/birthA2T.fst > compiled/86392birthA2T.fst
 echo " birthT2R"
-fstcompose compiled/186392birthA2T.fst compiled/birthT2R.fst > compiled/186392birthT2R.fst
+fstcompose compiled/86392T.fst compiled/birthT2R.fst > compiled/86392birthT2R.fst
 echo " birthR2A"
-fstcompose compiled/186392birthT2R.fst compiled/birthR2A.fst > compiled/186392birthR2A.fst
+fstcompose compiled/86392R.fst compiled/birthR2A.fst > compiled/86392birthR2A.fst
 echo " birthR2L"
-fstcompose compiled/186392birthT2R.fst compiled/birthR2L.fst > compiled/186392birthR2L.fst
+fstcompose compiled/86392R.fst compiled/birthR2L.fst > compiled/86392birthR2L.fst
 
-fstcompose compiled/186392.fst         compiled/birthA2T.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-fstcompose compiled/186392birthA2T.fst compiled/birthT2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-fstcompose compiled/186392birthT2R.fst compiled/birthR2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-fstcompose compiled/186392birthT2R.fst compiled/birthR2L.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/86392.fst  compiled/birthA2T.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/86392T.fst compiled/birthT2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/86392R.fst compiled/birthR2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/86392R.fst compiled/birthR2L.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
-fstcompose compiled/102313.fst         compiled/birthA2T.fst > compiled/102313birthA2T.fst
-fstcompose compiled/102313birthA2T.fst compiled/birthT2R.fst > compiled/102313birthT2R.fst
-fstcompose compiled/102313birthT2R.fst compiled/birthR2A.fst > compiled/102313birthR2A.fst
-fstcompose compiled/102313birthT2R.fst compiled/birthR2L.fst > compiled/102313birthR2L.fst
+fstcompose compiled/102313.fst  compiled/birthA2T.fst > compiled/102313birthA2T.fst
+fstcompose compiled/102313T.fst compiled/birthT2R.fst > compiled/102313birthT2R.fst
+fstcompose compiled/102313R.fst compiled/birthR2A.fst > compiled/102313birthR2A.fst
+fstcompose compiled/102313R.fst compiled/birthR2L.fst > compiled/102313birthR2L.fst
 echo " birthA2T"
-fstcompose compiled/102313.fst         compiled/birthA2T.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/102313.fst  compiled/birthA2T.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo " birthT2R"
-fstcompose compiled/102313birthA2T.fst compiled/birthT2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/102313T.fst compiled/birthT2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo " birthR2A"
-fstcompose compiled/102313birthT2R.fst compiled/birthR2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/102313R.fst compiled/birthR2A.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 echo " birthR2L"
-fstcompose compiled/102313birthT2R.fst compiled/birthR2L.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/102313R.fst compiled/birthR2L.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
 
 
