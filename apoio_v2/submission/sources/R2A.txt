@@ -34,7 +34,7 @@
 17  11  C   7
 1   18  D	eps
 18  19  C   eps
-19  20 C   eps
+19  20  C   eps
 20  11  C   8
 1   21  C	eps
 21  11  M   9  
@@ -50,7 +50,7 @@
 0   35  L	eps
 0   36  L	eps
 0   38  L	eps
-0   41  X	eps
+0   81  X	eps
 
 1   11  eps 0
 
@@ -71,8 +71,8 @@
 38  39  X   eps
 39  40  X   eps
 40  31  X   8
-11  41  X	eps
-41  31  C   9
+11  81  X	eps
+81  31  C   9
 
 31  8   eps 0
 8

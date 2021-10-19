@@ -1,5 +1,7 @@
 #!/bin/bash
 
+
+!!!!!! 1o bug e o estado 41 q esta duplicado, 2º bug é 
 mkdir -p compiled images
 
 for i in sources/*.txt tests/*.txt; do
@@ -39,8 +41,12 @@ echo "----------------- Second Exercise -----------------\n"
 echo "Creating the transducer 'A2R'"
 
 fstinvert compiled/R2A.fst > compiled/A2R.fst
-fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
 
+fstcompose compiled/Anumber1.fst compiled/A2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/Anumber1.fst compiled/A2R.fst > compiled/A2RResultt.fst
+fstinvert compiled/A2RResultt.fst > compiled/A2RResultt2.fst
+# fstcompose compiled/Rnumber1.fst compiled/R2A1.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# fstcompose compiled/Rnumber1.fst compiled/R2A1.fst > compiled/R2RResultt.fst
 echo "Creating the transducer 'birthR2A'"
 
 # This is the first part which converts Roman birthdates to 7/9/313
