@@ -58,8 +58,8 @@ fstconcat compiled/auxJ3.fst compiled/R2A.fst > compiled/auxFirstPart.fst
 fstconcat compiled/d2dd.fst compiled/copy.fst > compiled/auxJ4.fst
 fstconcat compiled/auxJ4.fst compiled/d2dd.fst > compiled/auxJ5.fst
 fstconcat compiled/auxJ5.fst compiled/copy.fst > compiled/auxJ6.fst
-# CRUCIAL change d2dd to dd2dddd < --------------------------------------------------------- WATCH OUT
-fstconcat compiled/auxJ6.fst compiled/d2dddd_1_2_4_more.fst > compiled/auxSecondPart.fst
+
+fstconcat compiled/auxJ6.fst compiled/d2dddd.fst > compiled/auxSecondPart.fst
 # Here we combine first part with second part resulting in birthR2A
 fstcompose compiled/auxFirstPart.fst compiled/auxSecondPart.fst > compiled/birthR2A.fst
 # Test with roman birth date
@@ -83,27 +83,33 @@ fstconcat compiled/auxK7.fst compiled/copy.fst > compiled/birthA2T.fst
 
 echo "Creating the transducer 'birthT2R'"
 
-# ir ate ao meio e converter para digito, depois a partir do inicio percorer convertendo A2R SKIP A2R SKIP A2R
-# inversion mm2mmm (month name -> number)
-fstinvert compiled/mm2mmm.fst > compiled/mmm2mm.fst
-# ir ate ao meio 
-fstconcat compiled/copy.fst compiled/copy.fst > compiled/auxL1.fst
-fstconcat compiled/auxL1.fst compiled/copy.fst > compiled/auxL2.fst
-# 09/Sep/2013 to 09/09/2013
-fstconcat compiled/auxL2.fst compiled/mmm2mm.fst > compiled/auxL3.fst
-fstconcat compiled/auxL3.fst compiled/copy.fst > compiled/auxL4.fst
-fstconcat compiled/auxL4.fst compiled/copy.fst > compiled/auxL5.fst
-fstconcat compiled/auxL5.fst compiled/copy.fst > compiled/auxL6.fst
-fstconcat compiled/auxL6.fst compiled/copy.fst > compiled/auxL7.fst
-fstconcat compiled/auxL7.fst compiled/copy.fst > compiled/auxLFirstPart.fst
-# FIRST PART WORKING
-#fstcompose compiled/arabicTextBirthDate.fst compiled/auxLFirstPart.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-#A2R SKIP A2R SKIP A2R (inversion of birthR2A)
+# # ir ate ao meio e converter para digito, depois a partir do inicio percorer convertendo A2R SKIP A2R SKIP A2R
+# # inversion mm2mmm (month name -> number)
+# fstinvert compiled/mm2mmm.fst > compiled/mmm2mm.fst
+# # ir ate ao meio 
+# fstconcat compiled/copy.fst compiled/copy.fst > compiled/auxL1.fst
+# fstconcat compiled/auxL1.fst compiled/copy.fst > compiled/auxL2.fst
+# # 09/Sep/2013 to 09/09/2013
+# fstconcat compiled/auxL2.fst compiled/mmm2mm.fst > compiled/auxL3.fst
+# fstconcat compiled/auxL3.fst compiled/copy.fst > compiled/auxL4.fst
+# fstconcat compiled/auxL4.fst compiled/copy.fst > compiled/auxL5.fst
+# fstconcat compiled/auxL5.fst compiled/copy.fst > compiled/auxL6.fst
+# fstconcat compiled/auxL6.fst compiled/copy.fst > compiled/auxL7.fst
+# fstconcat compiled/auxL7.fst compiled/copy.fst > compiled/auxLFirstPart.fst
+# # FIRST PART WORKING
+# #fstcompose compiled/arabicTextBirthDate.fst compiled/auxLFirstPart.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# #A2R SKIP A2R SKIP A2R (inversion of birthR2A)
+# fstinvert compiled/birthR2A.fst > compiled/birthA2R.fst
+# #fstcompose compiled/arabicBirthDate.fst compiled/birthA2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+# # composition of mm2mmm and A2R
+# fstcompose compiled/auxLFirstPart.fst compiled/birthA2R.fst > compiled/birthT2R.fst
+# # fstcompose compiled/arabicTextBirthDate.fst compiled/birthT2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+
+fstinvert compiled/birthA2T.fst > compiled/birthT2A.fst
 fstinvert compiled/birthR2A.fst > compiled/birthA2R.fst
-#fstcompose compiled/arabicBirthDate.fst compiled/birthA2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
-# composition of mm2mmm and A2R
-fstcompose compiled/auxLFirstPart.fst compiled/birthA2R.fst > compiled/birthT2R.fst
-# fstcompose compiled/arabicTextBirthDate.fst compiled/birthT2R.fst | fstshortestpath | fstproject --project_output=true | fstrmepsilon | fsttopsort | fstprint --acceptor --isymbols=./syms.txt
+fstcompose compiled/birthT2A.fst compiled/birthA2R.fst > compiled/birthT2R.fst
+
+
 
 
 echo "Creating the transducer 'birthR2L'"
