@@ -1,0 +1,115 @@
+0	1	M	1
+0	2	M	eps
+2	1	M	2
+0	3	M	eps
+3	4	M	eps
+4	1	M	3  
+
+1   5   eps 0
+5   6   eps 0
+6   7   eps 0
+7
+
+0   11  C   1  
+0   12  C	eps
+0   13  C   eps
+0   11  D	5
+0   15  D	eps
+0   16  D	eps
+0   18  D	eps
+0   21  C	eps
+
+1   11  C	1
+1   12  C	eps
+12  11  C	2
+12  11  D   4
+1	13	C	eps
+13	14	C	eps
+14	11	C	3
+1   11  D   5
+1   15  D	eps
+15  11  C	6
+1   16  D	eps
+16  17  C   eps
+17  11  C   7
+1   18  D	eps
+18  19  C   eps
+19  20  C   eps
+20  11  C   8
+1   21  C	eps
+21  11  M   9  
+
+11  22   eps 0
+22  23   eps 0
+23
+
+0   31  X   1  
+0   32  X	eps
+0   33  X   eps
+0   31  L	5
+0   35  L	eps
+0   36  L	eps
+0   38  L	eps
+0   81  X	eps
+
+1   11  eps 0
+
+11	31	X	1
+11	32	X	eps
+32	31	X	2
+32  31  L   4
+11	33	X	eps
+33	34	X	eps
+34	31	X	3
+11  31  L   5
+11  35  L	eps
+35  31  X	6
+11  36  L	eps
+36  37  X   eps
+37  31  X   7
+11  38  L	eps
+38  39  X   eps
+39  40  X   eps
+40  31  X   8
+11  81  X	eps
+81  31  C   9
+
+31  8   eps 0
+8
+
+0   41  I   1  
+0   42  I	eps
+0   43  I   eps
+0   41  V	5
+0   45  V	eps
+0   46  V	eps
+0   48  V	eps
+0   51  I	eps
+
+1   9   eps 0
+9   31  eps 0
+
+11  31  eps 0
+
+31	41	I	1
+31	42	I	eps
+42	41	I	2
+42  41  V   4
+31	43	I	eps
+43	44	I	eps
+44	41	I	3
+31  41  V   5
+31  45  V	eps
+45  41  I	6
+31  46  V	eps
+46  47  I   eps
+47  41  I   7
+31  48  V	eps
+48  49  I   eps
+49  50  I   eps
+50  41  I   8
+31  51  I	eps
+51  41  X   9
+41  
+
+
