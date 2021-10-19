@@ -50,7 +50,7 @@
 0   35  L	eps
 0   36  L	eps
 0   38  L	eps
-0   61  X	eps
+0   41  X	eps
 
 1   11  eps 0
 
@@ -71,7 +71,7 @@
 38  39  X   eps
 39  40  X   eps
 40  31  X   8
-11  61  X	eps
+11  41  X	eps
 41  31  C   9
 
 31  8   eps 0
