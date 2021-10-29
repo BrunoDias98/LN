@@ -1,28 +1,7 @@
 import sys
+import nltk
 # args form python qc.py –test NAMEOFTESTFILE –train NAMEOFTHETRAINFILE > results.txt
-if __name__ == "__main__":
-    # atencao as barras diferentes -(minha) != –(stor)
-    print('–' == '-')
-    args = sys.argv
-    if (len(args) != 5):
-        raise Exception
-    if args[1] != "–test":
-        raise Exception
-    test_file = args[2]
-    if args [3] != "–train":
-        print("–train")
-       # raise Exception
-    train_file = args[4]
-
-
-
-
-
-
-
-
-
-#  reads file to string
+# reads file to string
 def read_file_to_string(name):
     x = open(name, "r")
     file_text = x.read()
@@ -43,6 +22,28 @@ def split_file_by_category_sentence(file_text):
             lista.append(text)
             dict_cat_phrase[category] = lista
     return dict_cat_phrase
+
+if __name__ == "__main__":
+    # atencao as barras diferentes -(minha) != –(stor)
+    # print('–' == '-')
+    args = sys.argv
+    if len(args) != 5 or args[1] != "–test" or args [3] != "–train":
+        raise Exception
+    test_file = args[2]
+    train_file = args[4]
+    train_file_string = read_file_to_string(train_file)
+    dict_category_sentence = split_file_by_category_sentence(train_file_string)
+    print(read_file_to_string(test_file))
+
+
+
+
+
+
+
+
+
+
 
 
 
