@@ -8,6 +8,10 @@ nltk.download('punkt')
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 # #removing the stopwords
 # def remove_stopwords(text, is_lower_case=False):
 #     tokens = tokenizer.tokenize(text)
@@ -43,9 +47,9 @@ from nltk.corpus import stopwords
 # Removes punctuation https://www.kite.com/python/answers/how-to-remove-all-punctuation-marks-with-nltk-in-python  token.isalnum() 
 # Lower cases the text  .lower()
 
-# compounds handler TODO NGRAMS MODULE, maybe do it before tokenization, or after with the join " " command
-# normalizes TODO
-# stemming and lemmatization TODO
+# compounds handler TODO if necessary
+# normalizes TODO if necessary
+# stemming and lemmatization TODO 
 
 #Report The problem with this method is that it doesn’t capture the meaning of the text, or the context in which words appear, even when using n-grams.
 
@@ -64,13 +68,55 @@ def preprocessing(file_name):
         try:
             dict_cat_phrase[category].append(filtered_tokens)
         except KeyError:
-            lista = [] + filtered_tokens
+            lista = [filtered_tokens]
             dict_cat_phrase[category] = lista
     f.close()
     return dict_cat_phrase
 
-# def trainingBayes(dataSet, algorithm):
+#Converte o dicionario em lista de tuplos em que o 1º elemento 
+#+é um dic em que os elementos sao o a lista anterior com a sua frequencia idtf e o 2º elemento é 
+document 
 
+# 1A Estrategia 
+# Contar todas as palavras do dicionario (unique)
+# Cada categoria é um "documento" do tf-idf https://medium.com/@paritosh_30025/natural-language-processing-text-data-vectorization-af2520529cf7
+# Usar os scores the ITDF  https://towardsdatascience.com/natural-language-processing-feature-engineering-using-tf-idf-e8b9d00e7e76
+# train = [ ( dict(unique_word1=tf_idf_score,...), sentence[key] ), () ... ]
+def word2vec(sentence):
+    vectorizer = TfidfVectorizer()
+    text = ""
+    for elem in sentence["LITERATURE"]:
+        if len(elem)!=1:
+            for el in elem:
+                text = text + " " + str(el)
+        else:
+            text = text + " " + str(elem)
+    
+    print(text[0:800])
+    print("\n\n\n")
+    print(sentence["LITERATURE"][0:10])
+    vectors = vectorizer.fit_transform(text)
+    
+    #IT-DFs scores
+    vectorizer = TfidfVectorizer()
+    vectors = vectorizer.fit_transform([documentA, documentB])
+    feature_names = vectorizer.get_feature_names()
+    dense = vectors.todense()
+    denselist = dense.tolist()
+    df = pd.DataFrame(denselist, columns=feature_names)
+    # print(sentence.values())
+    print(sentence.keys())
+    print(sentence.keys())
+    print(sentence.keys())
+
+    # uniqueWords = set(sentence.values())
+    # table = []
+    # for label in sentence.keys():
+    #     numOfWords = dict.fromkeys(uniqueWords, 0)
+    #     for word in sentence[label]:
+    #         numOfWords[word] += 1
+    #     sentence[label]append[numOfWords]
+    # print(sentence["LITERATURE"][0:5])
 
 if __name__ == "__main__":
 
@@ -79,9 +125,20 @@ if __name__ == "__main__":
         raise Exception
     test_file = args[2]
     train_file = args[4]
-    dict_category_sentence = preprocessing(train_file)
-    print(dict_category_sentence["LITERATURE"])
-   
+    
+    #Preprocess
+    dict_category_sentence_train = preprocessing(train_file)
+    dict_category_sentence_test  = preprocessing(test_file)
+    # print(dict_category_sentence_train["LITERATURE"])
+    
+    #Word2Vec problem since some sentences might be larger thus the shape is not the same for all
+    train_vec = word2vec(dict_category_sentence_train)
+    #test  = word2vec(dict_category_sentence_test)
+    
+    #Train
+
+    #Classify
+
    
     #print(create_bag_of_words_for_each_category(train_file))
     # classifier_f = open ("naivebayes.pickle","rb")
