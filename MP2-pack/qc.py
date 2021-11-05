@@ -75,8 +75,6 @@ def preprocessing(file_name):
 
 #Converte o dicionario em lista de tuplos em que o 1º elemento 
 #+é um dic em que os elementos sao o a lista anterior com a sua frequencia idtf e o 2º elemento é 
-document 
-
 # 1A Estrategia 
 # Contar todas as palavras do dicionario (unique)
 # Cada categoria é um "documento" do tf-idf https://medium.com/@paritosh_30025/natural-language-processing-text-data-vectorization-af2520529cf7
@@ -84,31 +82,50 @@ document
 # train = [ ( dict(unique_word1=tf_idf_score,...), sentence[key] ), () ... ]
 def word2vec(sentence):
     vectorizer = TfidfVectorizer()
-    text = ""
-    for elem in sentence["LITERATURE"]:
-        if len(elem)!=1:
-            for el in elem:
-                text = text + " " + str(el)
-        else:
-            text = text + " " + str(elem)
     
-    print(text[0:800])
-    print("\n\n\n")
-    print(sentence["LITERATURE"][0:10])
-    vectors = vectorizer.fit_transform(text)
-    
-    #IT-DFs scores
-    vectorizer = TfidfVectorizer()
-    vectors = vectorizer.fit_transform([documentA, documentB])
-    feature_names = vectorizer.get_feature_names()
+    #From lists of lists to each category has a list
+    text = dict()
+    for key in sentence.keys():
+        text[key] = []
+        for elem in sentence[key]:
+            if len(elem)!=1:
+                for el in elem:
+                    text[key].append(el)
+            else:
+                text[key].append(elem)
+
+    print(sentence.keys())
+    listaL = ' '.join(text["HISTORY"])
+    listaH = ' '.join(text["LITERATURE"])
+
+    # TODO MUSIC IS NOT WORKING
+    # print(text["MUSIC"])
+    # listaM = ' '.join(text["MUSIC"])
+    listaS = ' '.join(text["SCIENCE"])
+    listaG = ' '.join(text["GEOGRAPHY"])
+
+    #Tokens vectorization according to the tf idfs scores
+    vectors = vectorizer.fit_transform([listaL, listaH, listaS, listaG])
+    feature_names = vectorizer.get_feature_names_out()
     dense = vectors.todense()
     denselist = dense.tolist()
     df = pd.DataFrame(denselist, columns=feature_names)
-    # print(sentence.values())
-    print(sentence.keys())
-    print(sentence.keys())
-    print(sentence.keys())
+    
+    #Conversion to file, not needed, just for visualization
+    # compression_opts = dict(method='zip',archive_name='out.csv')  
+    # df.to_csv('out.zip', index=False,compression=compression_opts)  
 
+    #IT-DFs scores
+    # vectorizer = TfidfVectorizer()
+    # vectors = vectorizer.fit_transform([documentA, documentB])
+    # feature_names = vectorizer.get_feature_names()
+    # dense = vectors.todense()
+    # denselist = dense.tolist()
+    # df = pd.DataFrame(denselist, columns=feature_names)
+    # print(sentence.values())
+    # print(sentence.keys())
+    # print(sentence.keys())
+    # print(sentence.keys())
     # uniqueWords = set(sentence.values())
     # table = []
     # for label in sentence.keys():
@@ -133,7 +150,7 @@ if __name__ == "__main__":
     
     #Word2Vec problem since some sentences might be larger thus the shape is not the same for all
     train_vec = word2vec(dict_category_sentence_train)
-    #test  = word2vec(dict_category_sentence_test)
+    test  = word2vec(dict_category_sentence_test)
     
     #Train
 
