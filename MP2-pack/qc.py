@@ -56,7 +56,6 @@ def word2vec(sentence):
 
     print("\n\n")
     print(sentence.keys())
-    print("\n\n")
 
     all_sentences = []
     i = 0
@@ -68,9 +67,8 @@ def word2vec(sentence):
         indexes[key] = i
     
     #Index for knowing when each category starts
-    print(indexes)
     print("\n\n")
-    print(all_sentences[0:2])
+    print(indexes)
     print("\n\n")
 
 
@@ -78,16 +76,17 @@ def word2vec(sentence):
     vectors = vectorizer.fit_transform(all_sentences)
     feature_names = vectorizer.get_feature_names_out()
     dense = vectors.todense()
-    
     #BUGS HERE
-    denselist = dense.tolist()
-    print("\nndone\n")
+    print(len(dense))
+    ### 3000 sentences works
+    denselist = dense[0:3000].tolist()
+    # print("\nndone\n")
     df = pd.DataFrame(denselist, columns=feature_names)
     print("\nndone\n")
     # Conversion to file, not needed, just for visualization
-    compression_opts = dict(method='zip',archive_name='out.csv')  
+    # compression_opts = dict(method='zip',archive_name='out.csv')  
     print("\nndone\n")
-    df.to_csv('out.zip', index=False,compression=compression_opts)  
+    # df.to_csv('out.zip', index=False,compression=compression_opts)  
 
     #IT-DFs scores
     # vectorizer = TfidfVectorizer()
