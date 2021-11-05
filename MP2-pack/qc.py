@@ -8,7 +8,8 @@ nltk.download('punkt')
 from nltk import word_tokenize
 from nltk.corpus import stopwords
 
-
+#Do the same as manuel for my imports so they configure the work enviromnent through the script
+from nltk.test.classify_fixt import setup_module
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 
@@ -76,37 +77,37 @@ def word2vec(sentence):
     vectors = vectorizer.fit_transform(all_sentences)
     feature_names = vectorizer.get_feature_names_out()
     dense = vectors.todense()
-    #BUGS HERE
-    print(len(dense))
-    ### 3000 sentences works
-    denselist = dense[0:3000].tolist()
-    # print("\nndone\n")
+    denselist = dense.tolist()
+    print("ndone\n\n")
     df = pd.DataFrame(denselist, columns=feature_names)
-    print("\nndone\n")
+    print("ndone\n\n")
+
+    #dataSet processing (iterate dataset and build train)
+    train = []
+    total_f = len(df.values)
+    print(total_f)
+
+    #Causes segfault
+    for k, row in df.iterrows():
+
+        aux_dict = dict()
+        total_f = len(df.values[k])
+        f = 0
+        for kk in range(total_f):
+            aux_dict[feature_names[f]] = row[kk]
+            f+=1
+        aux_tupl = (aux_dict, "categoria, if k in range categoria select")
+        train.append(aux_tupl)
+    print(train)
+    print("done\n\n\n")
+
+    # ( dict (vector/features), category), ...
+    # classifier = nltk.classify.NaiveBayesClassifier.train(train)
+    
     # Conversion to file, not needed, just for visualization
     # compression_opts = dict(method='zip',archive_name='out.csv')  
-    print("\nndone\n")
-    # df.to_csv('out.zip', index=False,compression=compression_opts)  
+    # df.to_csv('out.zip', index=False,compression=compression_opts)
 
-    #IT-DFs scores
-    # vectorizer = TfidfVectorizer()
-    # vectors = vectorizer.fit_transform([documentA, documentB])
-    # feature_names = vectorizer.get_feature_names()
-    # dense = vectors.todense()
-    # denselist = dense.tolist()
-    # df = pd.DataFrame(denselist, columns=feature_names)
-    # print(sentence.values())
-    # print(sentence.keys())
-    # print(sentence.keys())
-    # print(sentence.keys())
-    # uniqueWords = set(sentence.values())
-    # table = []
-    # for label in sentence.keys():
-    #     numOfWords = dict.fromkeys(uniqueWords, 0)
-    #     for word in sentence[label]:
-    #         numOfWords[word] += 1
-    #     sentence[label]append[numOfWords]
-    # print(sentence["LITERATURE"][0:5])
 
 if __name__ == "__main__":
 
@@ -118,14 +119,16 @@ if __name__ == "__main__":
     
     #Preprocess
     dict_category_sentence_train = preprocessing(train_file)
-    #dict_category_sentence_test  = preprocessing(test_file)
+    dict_category_sentence_test  = preprocessing(test_file)
     # print(dict_category_sentence_train["LITERATURE"])
     
     #Word2Vec problem since some sentences might be larger thus the shape is not the same for all
-    train_vec = word2vec(dict_category_sentence_train)
-    #test  = word2vec(dict_category_sentence_test)
+    train = word2vec(dict_category_sentence_train)
+    test  = word2vec(dict_category_sentence_test)
     
     #Train
+
+
 
     #Classify
 
