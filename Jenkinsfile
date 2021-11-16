@@ -14,7 +14,8 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo deploying   
+                sh '''
+                echo deploying   
                 retry(3) {
                     sh ./flakey-deploy.sh
                 }
@@ -22,7 +23,7 @@ pipeline {
                 timeout(time: 3, unit: MINUTES) {
                     sh ./health-check.sh
                 }
-                '
+                '''
 
             }
         }
