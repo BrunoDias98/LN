@@ -13,21 +13,24 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                echo deploying   
+                echo " retrying deployment 5 times but 
+                spending at most 3 minutes in each try
+                echo "deploying"  
                 retry(3) {
-                    sh ./flakey-deploy.sh
+                    sh './flakey-deploy.sh'
                 }
 
-                timeout(time: 3, unit: MINUTES) {
-                    sh ./health-check.sh
-                }
+                timeout(time: 3, unit: 'MINUTES') {
+                    sh './health-check.sh'
+                } "
                 '''
 
             }
         }
         stage('Test') {
             steps {
-                sh 'node --version'
+                sh 'echo "Failing on purpose"'
+                sh 'echo "Fail!"; exit 1'
             }
         }
     }
