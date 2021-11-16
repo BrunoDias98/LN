@@ -14,16 +14,16 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                sh 'echo deploying'
-                '''
+                sh 'echo deploying   
                 retry(3) {
-                    sh './flakey-deploy.sh'
+                    sh ./flakey-deploy.sh
                 }
 
-                timeout(time: 3, unit: 'MINUTES') {
-                    sh './health-check.sh'
+                timeout(time: 3, unit: MINUTES) {
+                    sh ./health-check.sh
                 }
-                '''
+                '
+
             }
         }
         stage('Test') {
