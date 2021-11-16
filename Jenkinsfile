@@ -1,7 +1,5 @@
 pipeline {
-    agent   { 
-        kubernetes { image 'node:14-alpine' }
-    }
+    agent any
     stages {
         stage('Build') {
             steps {
