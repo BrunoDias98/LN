@@ -11,6 +11,7 @@ pipeline {
                     ls -lah
                 '''
             }
+        }
         stage('Deploy') {
             steps {
                 sh 'echo deploying'
