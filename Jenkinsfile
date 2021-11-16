@@ -29,8 +29,10 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'echo "Failing on purpose"'
-                sh 'echo "Fail!"; exit 1'
+                sh '''
+                    echo "Failing on purpose"
+                    echo "Fail!; exit 1"
+                '''
             }
         }
     }
