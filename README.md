@@ -32,20 +32,3 @@ d2dddd (não feito)
 
 date2year skip * 6 | copy * 4
 
-
-Aulas de duvidas dos professores : 
-
-Nuno Mamede (part 1) & Luísa Coheur (part 2):
-Tagus: Thursday, 8h00 -- 10h00  (Nuno: 2N1.17) (Luísa: 2N11.21)
-Alameda: Tuesday, 13h30 -- 15h30 (Nuno: INESC-ID room 232) (Luísa: INESC-ID room 234A)
-
-Vânia Mendonça:
-Alameda: Monday, 14h45 -- 16h15 (room "Sala de Estudo DEI" [Study room], Informatics Pavilion III, Floor 0)
-Zoom: Thursday, 10h00 -- 11h30 (link)
-
-Rui Ribeiro:
-Zoom: Wednesday, 08h00 -- 09h30 (link)
-
-
-Ricardo Rei:
-Zoom: Thursday, 15h30 -- 16h30 (link)
